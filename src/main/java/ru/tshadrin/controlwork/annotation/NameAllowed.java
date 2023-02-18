@@ -10,7 +10,7 @@ import java.lang.annotation.RetentionPolicy;
 @Constraint(validatedBy = NameAllowedValidator.class)
 public @interface NameAllowed {
     String[] names();
-    String message() default "The name ${validatedValue} is not allowed. You can use them: {names}.";
+    String message() default "The entered name is not allowed. You can use them: {names}.";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }

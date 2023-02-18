@@ -1,5 +1,6 @@
 package ru.tshadrin.controlwork.exception;
 
+import com.fasterxml.jackson.core.JacksonException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -25,9 +26,18 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler
     public ResponseEntity<ToyIncorrectData> handleException (
-            NoSuchToyException exception) {
+            IllegalStateException exception) {
         ToyIncorrectData data = new ToyIncorrectData();
         data.setInfo(exception.getMessage());
         return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler
+    public ResponseEntity<ToyIncorrectData> handleJSONParseException (
+            JacksonException exception) {
+        ToyIncorrectData data = new ToyIncorrectData();
+        data.setInfo("Cannot deserialize value");
+        return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
+    }
+
 }
