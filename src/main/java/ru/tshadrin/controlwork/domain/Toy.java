@@ -1,5 +1,6 @@
 package ru.tshadrin.controlwork.domain;
 
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Toy {
@@ -43,5 +44,18 @@ public class Toy {
                 ", name='" + name + '\'' +
                 ", weight=" + weight +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Toy toy = (Toy) o;
+        return id.equals(toy.id) && name.equals(toy.name) && weight.equals(toy.weight);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, weight);
     }
 }

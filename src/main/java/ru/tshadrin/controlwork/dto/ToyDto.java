@@ -3,6 +3,7 @@ package ru.tshadrin.controlwork.dto;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import ru.tshadrin.controlwork.annotation.NameAllowed;
+import ru.tshadrin.controlwork.domain.Prize;
 
 public class ToyDto {
     private Long id;
@@ -12,10 +13,13 @@ public class ToyDto {
     @DecimalMin("0.0")
     private Double weight;
 
-    public ToyDto(Long id, String name, Double weight) {
+    private Prize prize;
+
+    public ToyDto(Long id, String name, Double weight, Prize prize) {
         this.id = id;
         this.name = name;
         this.weight = weight;
+        this.prize = prize;
     }
 
     public ToyDto() {
@@ -43,5 +47,13 @@ public class ToyDto {
 
     public void setWeight(Double weight) {
         this.weight = weight;
+    }
+
+    public Prize getPrize() {
+        return prize;
+    }
+
+    public void setPrize(Prize prize) {
+        this.prize = prize;
     }
 }
