@@ -9,16 +9,23 @@ import ru.tshadrin.controlwork.dto.ToyDto;
 import ru.tshadrin.controlwork.exception.NotBlankToyException;
 import ru.tshadrin.controlwork.service.ToyService;
 import ru.tshadrin.controlwork.utils.PrizeService;
+import ru.tshadrin.controlwork.utils.ToyDtoService;
 
 @RestController
 @RequestMapping("/api/v1/toys")
 public class AppController {
     private final ToyService toyServiceImpl;
     private final PrizeService prizeServiceImpl;
+    private final ToyDtoService toyDtoServiceImpl;
 
-    public AppController(ToyService toyServiceImpl, PrizeService prizeServiceImpl) {
+    public AppController(
+            ToyService toyServiceImpl,
+            PrizeService prizeServiceImpl,
+            ToyDtoService toyDtoServiceImpl
+    ) {
         this.toyServiceImpl = toyServiceImpl;
         this.prizeServiceImpl = prizeServiceImpl;
+        this.toyDtoServiceImpl = toyDtoServiceImpl;
     }
 
     @PostMapping
@@ -35,6 +42,8 @@ public class AppController {
     public ResponseEntity<ToyDto> getToy(){
         Toy temp = toyServiceImpl.getToy();
         Prize prize = prizeServiceImpl.getPrize(temp);
-        return ResponseEntity.ok(new ToyDto(temp.getId(), temp.getName(), temp.getWeight(), prize));
+        ToyDto dto = new ToyDto(temp.getId(), temp.getName(), temp.getWeight(), prize);
+        toyDtoServiceImpl.writeResult(dto);
+        return ResponseEntity.ok(dto);
     }
 }

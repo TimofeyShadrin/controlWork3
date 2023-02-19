@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1,
+    "name": "doll",
+    "prize": {
+      "name": "car"
+    },
+    "weight": 0.4
+  },
+  {
+    "id": 3,
+    "name": "robot",
+    "prize": {
+      "name": "car"
+    },
+    "weight": 0.33
+  },
+  {
+    "id": 0,
+    "name": "doll",
+    "prize": {
+      "name": "Didn't win"
+    },
+    "weight": 0.3
+  },
+  {
+    "id": 2,
+    "name": "robot",
+    "prize": {
+      "name": "car"
+    },
+    "weight": 0.25
+  }]
